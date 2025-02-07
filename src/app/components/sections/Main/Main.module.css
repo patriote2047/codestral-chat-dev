@@ -4,6 +4,8 @@
     flex-direction: column;
     height: 100%;
     overflow: hidden;
+    position: relative;
+    z-index: 0;
 }
 
 .contentWrapper {
@@ -12,12 +14,15 @@
     flex-direction: column;
     height: 100%;
     overflow: hidden;
+    position: relative;
+    z-index: 1;
 }
 
 .chatSection {
     flex: 1;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .chatWrapper {
@@ -28,6 +33,8 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 1;
 }
 
 .chatContainer {
@@ -38,6 +45,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .previewContainer {
@@ -48,4 +56,5 @@
     margin-top: 0;
     display: flex;
     flex-direction: column;
+    position: relative;
 }

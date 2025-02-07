@@ -20,9 +20,43 @@
 
     /* Border radius */
     --border-radius: 4px;
+    --border-radius-lg: 8px;
+    --border-radius-sm: 2px;
 
     /* Transitions */
     --transition-fast: 0.2s ease;
+    --transition-medium: 0.3s ease;
+    --transition-slow: 0.5s ease;
+
+    /* Button Styles */
+    /* Standard Button */
+    --btn-standard-bg: var(--theme-accent);
+    --btn-standard-color: white;
+    --btn-standard-hover-bg: #1976d2;
+    --btn-standard-active-bg: #1aec95;
+    --btn-standard-shadow: 0 2px 4px rgba(33, 150, 243, 0.2);
+    
+    /* Outline Button */
+    --btn-outline-bg: transparent;
+    --btn-outline-color: var(--theme-accent);
+    --btn-outline-border: 1px solid var(--theme-accent);
+    --btn-outline-hover-bg: rgba(33, 150, 243, 0.1);
+    --btn-outline-active-bg: rgba(33, 150, 243, 0.2);
+    
+    /* Ghost Button */
+    --btn-ghost-bg: transparent;
+    --btn-ghost-color: var(--theme-text-secondary);
+    --btn-ghost-hover-bg: var(--theme-bg-hover);
+    --btn-ghost-hover-color: var(--theme-text-primary);
+    --btn-ghost-active-bg: var(--theme-bg-secondary);
+
+    /* Button Sizes */
+    --btn-padding-sm: 0.5rem 1rem;
+    --btn-padding-md: 0.75rem 1.5rem;
+    --btn-padding-lg: 1rem 2rem;
+    --btn-font-sm: 0.875rem;
+    --btn-font-md: 1rem;
+    --btn-font-lg: 1.125rem;
 
     /* Light theme */
     --theme-bg-primary-light: #ffffff;

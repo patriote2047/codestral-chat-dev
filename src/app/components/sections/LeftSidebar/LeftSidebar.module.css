@@ -3,9 +3,12 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 280px;
+    width: var(--sidebar-width);
+    transition: transform 0.3s ease;
     background: var(--theme-bg-primary);
     border-right: 1px solid var(--theme-border);
+    transform: translateX(0);
+    z-index: 99999;
 }
 
 .collapsed {
@@ -14,26 +17,29 @@
 
 .toggleButton {
     position: absolute;
-    right: 0;
-    top: 12px;
-    width: 16px;
-    height: 32px;
-    background: var(--theme-bg-primary);
-    border: 1px solid var(--theme-border);
-    border-right: none;
-    border-radius: 4px 0 0 4px;
-    color: var(--theme-text-secondary);
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 40px;
+    background: #ff0000;
+    border: 2px solid #cc0000;
+    border-left: none;
+    border-radius: 0 6px 6px 0;
+    color: #ffffff;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 100;
+    z-index: 999999;
     padding: 0;
+    transition: all 0.3s ease;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.2);
 }
 
 .toggleButton:hover {
-    color: var(--theme-text-primary);
-    background: var(--theme-bg-primary);
+    background: #cc0000;
+    color: #ffffff;
 }
 
 .toggleIcon {
