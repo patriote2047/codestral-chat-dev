@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    image: myapp/api:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - NODE_ENV=production
+      - API_KEY=secret_key_123
+    depends_on:
+      - db
+      - redis
+    privileged: true
+
+  db:
+    image: postgres:13
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=secret_password
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:6
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    depends_on:
+      - api
+
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  db_data:
+    driver: local
+  redis_data:
+    external: true 

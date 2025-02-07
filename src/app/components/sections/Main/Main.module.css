@@ -1,0 +1,51 @@
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.contentWrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.chatSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.chatWrapper {
+    flex: 1;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.chatContainer {
+    flex: 1;
+    min-height: 0;
+    background: var(--theme-bg-primary);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.previewContainer {
+    height: 300px;
+    background: var(--theme-bg-primary);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+}

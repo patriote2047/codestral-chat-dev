@@ -1,0 +1,384 @@
+.menu {
+    padding: 1rem;
+    background: var(--theme-bg-primary);
+    min-width: 200px;
+}
+
+.menuTitle {
+    font-size: 1rem;
+    color: var(--theme-text-primary);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--theme-border);
+}
+
+/* Style pour la ligne de menus */
+.menuList {
+    display: flex;
+    align-items: stretch;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: var(--theme-bg-secondary);
+    border-radius: var(--border-radius);
+    list-style: none;
+    margin: 0;
+}
+
+.menuItem {
+    position: relative;
+    flex: 1;
+    display: flex;
+}
+
+.menuSeparator {
+    color: var(--theme-border);
+    font-size: 1.2rem;
+    opacity: 0.5;
+    display: flex;
+    align-items: center;
+}
+
+/* Styles pour les boutons principaux */
+.scriptButton {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: none;
+    border: none;
+    color: var(--theme-text-secondary);
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-align: left;
+    transition: all var(--transition-fast);
+}
+
+.scriptButton:hover {
+    background: var(--theme-bg-secondary);
+    color: var(--theme-text-primary);
+}
+
+/* Styles pour les sous-menus */
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--theme-bg-primary);
+    border: 1px solid var(--theme-border);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 0.5rem;
+    min-width: 200px;
+    list-style: none;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+/* Afficher le sous-menu quand le menu est actif */
+.menuActive .submenu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.submenuItem {
+    margin-bottom: 0.25rem;
+}
+
+.submenuButton {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: none;
+    border: none;
+    border-radius: var(--border-radius);
+    color: var(--theme-text-secondary);
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-align: left;
+    transition: all var(--transition-fast);
+}
+
+.submenuButton:hover {
+    background: var(--theme-bg-secondary);
+    color: var(--theme-text-primary);
+}
+
+.submenuItem:last-child {
+    margin-bottom: 0;
+}
+
+.submenuButton h4 {
+    margin: 0 0 0.25rem 0;
+    font-size: 0.9rem;
+    color: var(--theme-text-primary);
+}
+
+.submenuButton p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--theme-text-secondary);
+}
+
+/* Styles pour la modal et son contenu */
+.modalForm {
+    padding: 1.5rem;
+    background: var(--theme-bg-secondary);
+    border-radius: var(--border-radius);
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.chronoOutput {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: var(--theme-bg-secondary);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--theme-border);
+    max-height: 300px;
+    overflow-y: auto;
+    font-family: monospace;
+    white-space: pre-wrap;
+    word-break: break-all;
+    line-height: 1.5;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.chronoOutput pre {
+    margin: 0;
+    padding: 0;
+}
+
+.fileList {
+    max-height: 300px;
+    overflow-y: auto;
+    margin: 1rem 0;
+    border: 1px solid var(--theme-border);
+    border-radius: var(--border-radius);
+    background: var(--theme-bg-secondary);
+}
+
+.fileItem {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border-bottom: 1px solid var(--theme-border);
+}
+
+.fileItem:last-child {
+    border-bottom: none;
+}
+
+.fileItem:hover {
+    background: var(--theme-bg-tertiary);
+}
+
+.fileItem.selected {
+    background: var(--theme-accent);
+    color: white;
+}
+
+.explanation {
+    margin-bottom: 1.5rem;
+    color: var(--theme-text-secondary);
+}
+
+.explanation h4 {
+    color: var(--theme-text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.modal {
+    background: var(--theme-bg-primary);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalAppear 0.3s ease;
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modalHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid var(--theme-border);
+}
+
+.modalHeader h3 {
+    margin: 0;
+    color: var(--theme-text-primary);
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--theme-text-secondary);
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all var(--transition-fast);
+}
+
+.closeButton:hover {
+    background: var(--theme-bg-secondary);
+    color: var(--theme-text-primary);
+}
+
+.modalContent {
+    padding: 1.5rem;
+}
+
+.commandList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.commandItem {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1rem;
+    background: var(--theme-bg-secondary);
+    border: 1px solid var(--theme-border);
+    border-radius: var(--border-radius);
+    transition: all var(--transition-fast);
+}
+
+.commandItem:hover {
+    border-color: var(--theme-accent);
+    background: var(--theme-bg-tertiary);
+}
+
+.commandInfo {
+    flex: 1;
+    margin-right: 1rem;
+}
+
+.commandInfo h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--theme-text-primary);
+}
+
+.commandInfo p {
+    margin: 0 0 0.5rem 0;
+    color: var(--theme-text-secondary);
+    font-size: 0.9rem;
+}
+
+.error {
+    color: #dc3545;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: rgba(220, 53, 69, 0.1);
+    border-radius: var(--border-radius);
+}
+
+.inputGroup {
+    margin-bottom: 1rem;
+}
+
+.inputGroup label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--theme-text-primary);
+    font-weight: 500;
+}
+
+.fileInput {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--theme-border);
+    border-radius: var(--border-radius);
+    background: var(--theme-bg-primary);
+    color: var(--theme-text-primary);
+    font-size: 0.9rem;
+    transition: all var(--transition-fast);
+}
+
+.fileInput:focus {
+    outline: none;
+    border-color: var(--theme-accent);
+    box-shadow: 0 0 0 2px var(--theme-accent-light);
+}
+
+.countForm {
+    background: var(--theme-bg-secondary);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+}
+
+.submitButton {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    background: var(--theme-accent);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    margin-top: 1rem;
+}
+
+.submitButton:hover {
+    filter: brightness(1.1);
+}
+
+.menuContainer {
+    position: relative;
+}
+
+.menuTrigger {
+    position: relative;
+    cursor: pointer;
+    padding: 0.75rem 1rem;
+    color: var(--theme-text-secondary);
+}
+
+.menuTrigger:hover {
+    color: var(--theme-text-primary);
+    background: var(--theme-bg-secondary);
+}
+
+/* Quand le modal est ouvert */
+.modalOpen .scriptButton,
+.modalOpen .submenu {
+    pointer-events: none;
+    opacity: 0.5;
+} 

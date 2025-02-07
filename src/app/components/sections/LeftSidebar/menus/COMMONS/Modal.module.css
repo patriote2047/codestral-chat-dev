@@ -1,0 +1,218 @@
+/* Overlay */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 1rem;
+}
+
+/* Modal container */
+.modal {
+    background: var(--theme-bg-primary);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+    position: relative;
+    animation: modalEnter 0.3s ease-out;
+}
+
+/* Tailles de modal */
+.small {
+    max-width: 400px;
+}
+
+.medium {
+    max-width: 600px;
+}
+
+.large {
+    max-width: 800px;
+}
+
+/* En-tête de la modal */
+.modalHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--theme-border);
+}
+
+.modalHeader h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--theme-text-primary);
+    font-weight: 600;
+}
+
+/* Bouton de fermeture */
+.closeButton {
+    background: none;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--theme-text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+    margin: -0.5rem -0.5rem -0.5rem 0;
+}
+
+.closeButton:hover {
+    background-color: var(--theme-bg-secondary);
+    color: var(--theme-text-primary);
+}
+
+.closeButton:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--theme-accent);
+}
+
+/* Contenu de la modal */
+.modalContent {
+    padding: 1.5rem;
+}
+
+/* Animation d'entrée */
+@keyframes modalEnter {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Styles pour le scroll */
+.modal::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal::-webkit-scrollbar-track {
+    background: var(--theme-bg-secondary);
+    border-radius: 4px;
+}
+
+.modal::-webkit-scrollbar-thumb {
+    background: var(--theme-border);
+    border-radius: 4px;
+}
+
+.modal::-webkit-scrollbar-thumb:hover {
+    background: var(--theme-text-secondary);
+}
+
+/* Media queries pour la responsivité */
+@media (max-width: 640px) {
+    .modalOverlay {
+        padding: 0.5rem;
+    }
+
+    .modal {
+        max-height: calc(100vh - 1rem);
+    }
+
+    .modalHeader {
+        padding: 0.75rem 1rem;
+    }
+
+    .modalContent {
+        padding: 1rem;
+    }
+
+    .small, .medium, .large {
+        max-width: 100%;
+    }
+}
+
+.error {
+    color: #dc3545;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: rgba(220, 53, 69, 0.1);
+    border-radius: var(--border-radius);
+}
+
+.scriptOutput {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: var(--theme-bg-secondary);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--theme-border);
+    max-height: 300px;
+    overflow-y: auto;
+    font-family: monospace;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+/* Styles pour les formulaires dans les modals */
+.modalForm {
+    background: var(--theme-bg-secondary);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+}
+
+/* Styles pour les boutons d'action dans les modals */
+.modalButton {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    background: var(--theme-accent);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    margin-top: 1rem;
+}
+
+.modalButton:hover {
+    filter: brightness(1.1);
+}
+
+/* Styles pour les groupes d'entrées dans les modals */
+.modalInputGroup {
+    margin-bottom: 1rem;
+}
+
+.modalInputGroup label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--theme-text-primary);
+    font-weight: 500;
+}
+
+.modalInput {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--theme-border);
+    border-radius: var(--border-radius);
+    background: var(--theme-bg-primary);
+    color: var(--theme-text-primary);
+    font-size: 0.9rem;
+    transition: all var(--transition-fast);
+}
+
+.modalInput:focus {
+    outline: none;
+    border-color: var(--theme-accent);
+    box-shadow: 0 0 0 2px var(--theme-accent-light);
+} 

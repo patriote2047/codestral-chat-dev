@@ -1,0 +1,99 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    height: var(--header-height);
+    width: 100%;
+    background: var(--theme-bg-primary);
+    border-bottom: 1px solid var(--theme-border);
+}
+
+.headerLeft {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--theme-text-primary);
+    margin: 0;
+}
+
+.nav {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.navLink {
+    color: var(--theme-text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: all var(--transition-fast);
+}
+
+.navLink:hover {
+    color: var(--theme-text-primary);
+    background: var(--theme-bg-secondary);
+}
+
+.navLink.active {
+    color: var(--theme-accent);
+    font-weight: 500;
+}
+
+@media (max-width: 640px) {
+    .headerLeft {
+        gap: 1rem;
+    }
+
+    .nav {
+        display: none;
+    }
+}
+
+.userActions {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.themeToggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.themeToggle:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.icon {
+    color: #4a5568;
+}
+
+.srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

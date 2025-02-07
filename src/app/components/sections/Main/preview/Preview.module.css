@@ -1,0 +1,41 @@
+.previewContainer {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--theme-bg-secondary);
+}
+
+.tabs {
+    display: flex;
+    background: var(--theme-bg-secondary);
+    border-bottom: 1px solid var(--theme-border);
+}
+
+.tabButton {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: none;
+    color: var(--theme-text-secondary);
+    cursor: pointer;
+    font-size: 0.85rem;
+    border-bottom: 2px solid transparent;
+    transition: all var(--transition-fast);
+}
+
+.tabButton:hover {
+    color: var(--theme-text-primary);
+    background: var(--theme-bg-hover);
+}
+
+.tabButton.active {
+    color: var(--theme-accent);
+    border-bottom-color: var(--theme-accent);
+    background: var(--theme-bg-primary);
+}
+
+.previewContent {
+    flex: 1;
+    overflow: hidden;
+    background: var(--theme-bg-primary);
+} 

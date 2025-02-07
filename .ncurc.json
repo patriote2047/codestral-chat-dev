@@ -1,0 +1,9 @@
+{
+    "upgrade": true,
+    "reject": ["@types/node", "typescript"],
+    "target": "minor",
+    "format": "group",
+    "packageManager": "npm",
+    "interactive": false,
+    "pre": false
+}
