@@ -6,7 +6,6 @@
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    composes: custom-scrollbar from global;
 }
 
 .previewContent {

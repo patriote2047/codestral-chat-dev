@@ -1,163 +1,540 @@
+/* Variables */
 .previewContainer {
-    width: 100%;
-    height: 100%;
-    background: var(--theme-bg-primary);
-    color: var(--theme-text-primary);
+    /* Utilisation des variables globales */
     display: flex;
     flex-direction: column;
-}
-
-.header {
-    margin-bottom: 2rem;
-}
-
-.header h2 {
+    height: 100%;
+    background-color: var(--theme-bg-primary);
     color: var(--theme-text-primary);
-    margin: 0 0 0.5rem 0;
+    overflow: hidden;
 }
 
-.header p {
-    color: var(--theme-text-secondary);
-    margin: 0;
-}
-
-.content {
-    font-family: 'Consolas', 'Monaco', monospace;
-    white-space: pre-wrap;
-}
-
-.line {
-    padding: 0.25rem 0;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.category {
-    color: var(--theme-accent);
-    font-weight: bold;
-    margin-top: 1rem;
-    text-transform: uppercase;
-}
-
-.command {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-}
-
-.commandName {
-    color: var(--theme-text-primary);
-    min-width: 200px;
-    font-weight: 500;
-}
-
-.commandDesc {
-    color: var(--theme-text-secondary);
-    font-style: italic;
-}
-
-.subCommand {
-    padding-left: 2rem;
-    color: var(--theme-text-secondary);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.arrow {
-    color: var(--theme-accent);
-    margin-right: 0.5rem;
-}
-
-.subCommandName {
-    color: var(--theme-text-primary);
-}
-
-.plus {
-    color: var(--theme-text-tertiary);
-    margin: 0 0.5rem;
-}
-
-.separator {
-    height: 1px;
-    background: var(--theme-border);
-    margin: 1rem 0;
-}
-
-.placeholder {
-    color: var(--theme-text-secondary);
-    text-align: center;
-    padding: 2rem;
-}
-
-.error {
-    color: var(--theme-error);
-    padding: 1rem;
-    border: 1px solid var(--theme-error);
-    border-radius: var(--border-radius);
-    margin: 1rem;
-}
-
-.metadata {
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--theme-border);
-    color: var(--theme-text-secondary);
-    font-size: 0.9rem;
-}
-
-.metadata p {
-    margin: 0.25rem 0;
-}
-
-.tabs {
-    display: flex;
-    background: var(--theme-bg-secondary);
-    border-bottom: 1px solid var(--theme-border);
-    padding: 0.5rem 1rem 0;
-    flex-shrink: 0;
-}
-
-.tabButton {
-    padding: 0.5rem 1rem;
-    border: none;
-    background: none;
-    color: var(--theme-text-secondary);
-    cursor: pointer;
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
-    margin-right: 0.5rem;
-    font-size: 0.9rem;
-    transition: all var(--transition-fast);
-}
-
-.tabButton:hover {
-    color: var(--theme-text-primary);
-    background: var(--theme-bg-hover);
-}
-
-.tabButton.active {
-    color: var(--theme-text-primary);
-    background: var(--theme-bg-primary);
-    border: 1px solid var(--theme-border);
-    border-bottom: none;
-    position: relative;
-}
-
-.tabButton.active::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: var(--theme-bg-primary);
+/* Thème sombre */
+@media (prefers-color-scheme: dark) {
+    .previewContainer {
+        --background-primary: var(--theme-bg-primary-dark);
+        --background-secondary: var(--theme-bg-secondary-dark);
+        --background-tertiary: var(--theme-bg-tertiary-dark);
+        --text-primary: var(--theme-text-primary-dark);
+        --text-secondary: var(--theme-text-secondary-dark);
+        --border-color: var(--theme-border-dark);
+        --primary-color: var(--theme-accent-dark);
+        --secondary-color: var(--theme-text-secondary-dark);
+        --shadow-sm: var(--theme-shadow-sm);
+        --shadow-md: var(--theme-shadow-md);
+    }
 }
 
 .previewContent {
     flex: 1;
     overflow-y: auto;
     padding: 1.5rem;
+    background-color: var(--theme-bg-primary);
+}
+
+/* Message d'erreur */
+.error {
+    padding: 1rem;
+    background-color: var(--theme-error-bg);
+    border: 1px solid var(--theme-error);
+    border-radius: var(--border-radius);
+    color: var(--theme-error);
+}
+
+.error h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.125rem;
+}
+
+/* Message de succès */
+.success {
+    padding: 1rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--theme-bg-primary);
+}
+
+/* Placeholder */
+.placeholder {
+    color: var(--theme-text-secondary);
+    background-color: var(--theme-bg-secondary);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+
+/* En-tête du rapport */
+.header {
+    background-color: var(--theme-bg-secondary);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    border: 1px solid var(--theme-border);
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--theme-text-primary);
+    margin: 0 0 0.5rem 0;
+}
+
+.header .project-path {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* En-tête de catégorie */
+.categoryHeader {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--theme-bg-secondary);
+    border-radius: 0.5rem 0.5rem 0 0;
+    border: 1px solid var(--theme-border);
+    margin-top: 1.5rem;
+}
+
+.categoryHeader .category-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: var(--theme-accent);
+}
+
+.categoryHeader .category-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--theme-text-primary);
+    flex: 1;
+}
+
+.categoryHeader .category-count {
+    background-color: var(--theme-accent);
+    color: var(--theme-bg-primary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Container des commandes */
+.categoryContainer {
+    border: 1px solid var(--theme-border);
+    border-top: none;
+    border-radius: 0 0 0.5rem 0.5rem;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    background-color: var(--theme-bg-secondary);
+}
+
+.command-item {
+    padding: 1rem;
+    border-bottom: 1px solid var(--theme-border);
+    background-color: var(--theme-bg-secondary);
+}
+
+.command-item:last-child {
+    border-bottom: none;
+}
+
+.command-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.command-name {
+    font-weight: 600;
+    color: var(--theme-accent);
+    font-size: 1rem;
+}
+
+.command-value {
+    font-family: var(--font-mono);
+    background-color: var(--theme-bg-tertiary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--theme-text-secondary);
+}
+
+.command-description {
+    color: var(--theme-text-secondary);
+    font-size: 0.875rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Résumé */
+.summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1.5rem;
+    background-color: var(--theme-bg-secondary);
+    border-radius: 0.5rem;
+    margin-top: auto;
+    border: 1px solid var(--theme-border);
+}
+
+.summary-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.summary-label {
+    color: var(--theme-text-secondary);
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+}
+
+.summary-value {
+    color: var(--theme-accent);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* Métadonnées */
+.metadata {
+    font-size: 0.875rem;
+    color: var(--theme-text-secondary);
+    padding-top: 1rem;
+    border-top: 1px solid var(--theme-border);
+    margin-top: auto;
+}
+
+/* Effets de survol */
+.command-item:hover {
+    background-color: var(--theme-bg-hover);
+}
+
+.command-value:hover {
+    background-color: var(--theme-bg-tertiary);
+    color: var(--theme-text-primary);
+}
+
+/* Animations */
+.category-icon {
+    transition: transform var(--transition-fast);
+}
+
+.categoryHeader:hover .category-icon {
+    transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .command-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .summary {
+        grid-template-columns: 1fr;
+    }
+}
+
+.visible {
+    display: flex;
+}
+
+/* Styles des onglets principaux */
+.mainTabs {
+    display: flex;
+    background-color: var(--theme-bg-secondary);
+    border-bottom: 1px solid var(--theme-border);
+    padding: 0.5rem 1rem 0;
+}
+
+.mainTabButton {
+    background: none;
+    border: none;
+    color: var(--theme-text-secondary);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-weight: 500;
+    border-radius: 4px 4px 0 0;
+    margin-right: 0.5rem;
+    transition: all var(--transition-fast);
+}
+
+.mainTabButton:hover {
+    color: var(--theme-text-primary);
+    background-color: var(--theme-bg-hover);
+}
+
+.mainTabButton.active {
+    color: var(--theme-text-primary);
+    background-color: var(--theme-bg-primary);
+    border: 1px solid var(--theme-border);
+    border-bottom: none;
+}
+
+/* Styles des sous-onglets */
+.subTabs {
+    display: flex;
+    background-color: var(--theme-bg-primary);
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--theme-border);
+}
+
+.subTabButton {
+    background: none;
+    border: none;
+    color: var(--theme-text-secondary);
+    padding: 0.25rem 0.75rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    border-radius: 3px;
+    margin-right: 0.5rem;
+    transition: all var(--transition-fast);
+}
+
+.subTabButton:hover {
+    color: var(--theme-text-primary);
+    background-color: var(--theme-bg-hover);
+}
+
+.subTabButton.active {
+    color: var(--theme-text-primary);
+    background-color: var(--theme-bg-hover);
+    font-weight: 500;
+}
+
+/* Styles des lignes */
+.line {
+    padding: 0.25rem 0;
+    font-size: 0.9rem;
+}
+
+.separator {
+    height: 1px;
+    background-color: var(--theme-border);
+    margin: 1.5rem 0;
+    opacity: 0.5;
+}
+
+/* Styles pour les commandes */
+.command {
+    display: flex;
+    align-items: baseline;
+    padding: 0.5rem 0;
+}
+
+.commandName {
+    color: var(--theme-success);
+    font-weight: 500;
+    margin-right: 1rem;
+    min-width: 120px;
+}
+
+.commandDesc {
+    color: var(--theme-text-secondary);
+}
+
+.subCommand {
+    padding-left: 1.5rem;
+    color: var(--theme-text-secondary);
+    font-size: 0.85rem;
+}
+
+.arrow {
+    margin-right: 0.5rem;
+    color: var(--theme-accent);
+}
+
+.plus {
+    margin: 0 0.5rem;
+    color: var(--theme-accent);
+}
+
+/* Styles pour les dépendances */
+.dependency {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.dependencyName {
+    color: var(--theme-success);
+    font-weight: 500;
+    margin-right: 1rem;
+    min-width: 200px;
+}
+
+.dependencyVersion {
+    color: var(--theme-text-secondary);
+    margin-right: 1rem;
+}
+
+.dependencyType {
+    font-size: 0.8rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+
+.dependencyType.dev {
+    background-color: var(--theme-warning-bg);
+    color: var(--theme-warning);
+}
+
+.dependencyType.peer {
+    background-color: var(--theme-info-bg);
+    color: var(--theme-info);
+}
+
+/* Styles pour les fichiers */
+.fileType {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.fileTypeExt {
+    color: var(--theme-success);
+    font-weight: 500;
+    margin-right: 1rem;
+    min-width: 100px;
+}
+
+.fileTypeCount {
+    color: var(--theme-text-primary);
+    margin-right: 1rem;
+}
+
+.fileTypeSize {
+    color: var(--theme-text-secondary);
+}
+
+.file {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.fileName {
+    color: var(--theme-success);
+    font-weight: 500;
+    margin-right: 1rem;
+    min-width: 200px;
+}
+
+.filePath {
+    color: var(--theme-text-secondary);
+    margin-right: 1rem;
+    flex: 1;
+}
+
+.fileSize {
+    color: var(--theme-text-secondary);
+}
+
+/* Styles pour les dossiers */
+.folder {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.folderName {
+    color: var(--theme-success);
+    font-weight: 500;
+    margin-right: 1rem;
+    min-width: 200px;
+}
+
+.folderPath {
+    color: var(--theme-text-secondary);
+    margin-right: 1rem;
+    flex: 1;
+}
+
+.folderStats {
+    color: var(--theme-text-secondary);
+    font-size: 0.85rem;
+}
+
+/* Styles pour les frameworks */
+.framework {
+    padding: 0.5rem 0;
+}
+
+.frameworkName {
+    color: var(--theme-success);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.frameworkConfig {
+    color: var(--theme-text-secondary);
+    font-size: 0.85rem;
+}
+
+/* Styles pour les statistiques */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.statsItem {
+    background-color: var(--theme-bg-hover);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+}
+
+.statsLabel {
+    display: block;
+    color: var(--theme-text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.statsValue {
+    display: block;
+    color: var(--theme-text-primary);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Styles pour les emplacements de test */
+.testLocation {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.testLocationPath {
+    color: var(--theme-success);
+    margin-right: 1rem;
+    flex: 1;
+}
+
+.testLocationStats {
+    color: var(--theme-text-secondary);
+    font-size: 0.85rem;
+}
+
+/* Styles pour le projet */
+.projectLabel {
+    color: var(--theme-text-secondary);
+}
+
+.projectPath {
+    color: var(--theme-success);
+    margin-left: 0.5rem;
 }
 
 /* Styles spécifiques pour l'affichage des commandes */
@@ -202,11 +579,288 @@
     border-radius: var(--border-radius);
     padding: 1rem;
     overflow-y: auto;
-    font-family: monospace;
+    font-family: var(--font-mono);
     white-space: pre-wrap;
 }
 
 .outputLine {
     padding: 0.2rem 0;
     line-height: 1.4;
+}
+
+/* Styles pour l'onglet Sortie */
+.outputContent {
+    background: var(--theme-bg-secondary);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+}
+
+.outputHeader {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--theme-border);
+}
+
+.outputTitle {
+    color: var(--theme-text-secondary);
+    font-size: 0.9rem;
+}
+
+.outputText {
+    font-family: var(--font-mono);
+    white-space: pre-wrap;
+    margin: 0;
+    padding: 1rem;
+    background: var(--theme-bg-tertiary);
+    border-radius: var(--border-radius);
+}
+
+/* Styles pour l'onglet Logs */
+.logsContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.logEntry {
+    display: grid;
+    grid-template-columns: auto auto 1fr auto;
+    gap: 1rem;
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    background: var(--theme-bg-secondary);
+    align-items: center;
+}
+
+.logEntry.error {
+    background: var(--theme-error-bg);
+    color: var(--theme-error);
+}
+
+.logEntry.success {
+    background: var(--theme-success-bg);
+    color: var(--theme-success);
+}
+
+.logTime {
+    color: var(--theme-text-secondary);
+    font-size: 0.9rem;
+    font-family: var(--font-mono);
+}
+
+.logCommand {
+    font-weight: 500;
+    color: var(--theme-accent);
+}
+
+.logStatus {
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--border-radius);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.logMessage {
+    color: var(--theme-text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Styles pour les boutons de scan et compteur */
+.scanButton, .countButton {
+    background: none;
+    border: 1px solid var(--theme-border);
+    color: var(--theme-text-primary);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-weight: 500;
+    border-radius: var(--border-radius);
+    margin-right: 0.5rem;
+    transition: all var(--transition-fast);
+}
+
+.scanButton:hover, .countButton:hover {
+    background-color: var(--theme-bg-hover);
+    border-color: var(--theme-accent);
+}
+
+.scanButton.active, .countButton.active {
+    background-color: var(--theme-bg-hover);
+    border-color: var(--theme-accent);
+    color: var(--theme-accent);
+}
+
+/* Styles spécifiques pour ScannerPreview */
+.scannerContainer {
+    padding: 1rem;
+}
+
+.scanResults {
+    margin-top: 1rem;
+    border: 1px solid var(--theme-border);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+}
+
+.scanItem {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--theme-border);
+}
+
+.scanItem:last-child {
+    border-bottom: none;
+}
+
+.scanIcon {
+    margin-right: 1rem;
+    color: var(--theme-accent);
+}
+
+.scanDetails {
+    flex: 1;
+}
+
+.scanPath {
+    color: var(--theme-text-primary);
+    font-weight: 500;
+}
+
+.scanInfo {
+    color: var(--theme-text-secondary);
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+/* Styles spécifiques pour CountLinesPreview */
+.countContainer {
+    padding: 1rem;
+}
+
+.countResults {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.countCard {
+    background-color: var(--theme-bg-hover);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    text-align: center;
+}
+
+.countNumber {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--theme-accent);
+    margin-bottom: 0.5rem;
+}
+
+.countLabel {
+    color: var(--theme-text-secondary);
+    font-size: 0.9rem;
+}
+
+.countDetails {
+    margin-top: 1rem;
+    border: 1px solid var(--theme-border);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+}
+
+.countRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--theme-border);
+}
+
+.countRow:last-child {
+    border-bottom: none;
+}
+
+.countFileType {
+    color: var(--theme-text-primary);
+    font-weight: 500;
+}
+
+.countValue {
+    color: var(--theme-text-secondary);
+}
+
+.previewHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--theme-bg-secondary);
+    border-bottom: 1px solid var(--theme-border);
+}
+
+.previewHeader h3 {
+    margin: 0;
+    color: var(--theme-text-primary);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.projectPath {
+    color: var(--theme-text-secondary);
+    font-size: 0.9rem;
+}
+
+/* États de chargement et d'erreur */
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--theme-text-secondary);
+    font-style: italic;
+}
+
+.noPackage {
+    padding: 1rem;
+    color: var(--theme-warning);
+    background-color: var(--theme-warning-bg);
+    border-radius: var(--border-radius);
+}
+
+/* Styles pour l'affichage des commandes */
+.commandsContainer {
+    padding: 1rem;
+}
+
+.commandsTitle {
+    margin: 0 0 1rem 0;
+    color: var(--theme-text-primary);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.commandItem {
+    display: flex;
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--theme-border);
+    align-items: baseline;
+}
+
+.commandItem:last-child {
+    border-bottom: none;
+}
+
+.commandValue {
+    color: var(--theme-text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+}
+
+.success {
+    padding: 1rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 } 

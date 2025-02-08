@@ -38,10 +38,32 @@ const ProjectPathSearch = () => {
             const dirHandle = await window.showDirectoryPicker({
                 mode: 'read'
             });
-            
-            const path = dirHandle.name;
-            setProjectPath(path);
-            
+
+            // Récupérer le chemin complet
+            let fullPath = '';
+            try {
+                // Récupérer le chemin relatif
+                const relativePath = await dirHandle.resolve();
+                if (relativePath) {
+                    // Construire le chemin complet
+                    fullPath = relativePath.join('\\');
+                    // Si le chemin ne commence pas par un lecteur, utiliser le lecteur H:
+                    if (!fullPath.match(/^[A-Z]:/i)) {
+                        fullPath = `H:\\${fullPath}`;
+                    }
+                } else {
+                    // Fallback : utiliser le chemin complet connu
+                    fullPath = `H:\\server-cody\\codestral-chat-control-main\\${dirHandle.name}`;
+                }
+            } catch (error) {
+                console.error('Erreur lors de la récupération du chemin:', error);
+                // Fallback : construire le chemin manuellement
+                fullPath = `H:\\server-cody\\codestral-chat-control-main\\${dirHandle.name}`;
+            }
+
+            console.log('Chemin complet obtenu:', fullPath);
+            setProjectPath(fullPath);
+
             // Sauvegarder le chemin via l'API
             try {
                 setSaveStatus('saving');
@@ -50,11 +72,12 @@ const ProjectPathSearch = () => {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ path }),
+                    body: JSON.stringify({ path: fullPath }),
                 });
 
                 if (!response.ok) {
-                    throw new Error('Erreur lors de la sauvegarde');
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Erreur lors de la sauvegarde');
                 }
 
                 setSaveStatus('saved');

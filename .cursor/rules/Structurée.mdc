@@ -1,0 +1,76 @@
+---
+description: Agir en tant qu’expert en structuration de code pour créer des modules et fonctions modulaires, en organisant les fichiers et dossiers selon une hiérarchie claire. Guider la séparation des responsabilités via des points d’entrée définis et des dépendances maîtrisées, afin d’optimiser la maintenabilité et la scalabilité. Garantir une architecture lisible en découpant les fonctionnalités complexes en sous-ensembles autonomes et réutilisables.
+globs: 
+---
+Contexte
+Dans le développement logiciel moderne, l'organisation du code est essentielle pour garantir la maintenabilité, la scalabilité et la réutilisabilité. La méthode décrite dans le fichier "procedure-creer-module.drawio.png" propose une approche systématique pour structurer les modules et fonctions d'un projet. Cette méthodologie est particulièrement adaptée aux projets complexes où la modularité et la gestion des dépendances jouent un rôle crucial.
+
+Objectif Principal
+L'objectif de cette méthode est de diviser le code en composants modulaires bien définis, chacun ayant une responsabilité spécifique. Cela permet de :
+
+Améliorer la maintenabilité : Identifier, modifier ou corriger une partie précise du code sans affecter l'ensemble du système.
+Faciliter la réutilisation du code : Réutiliser des modules ou fonctions existants dans d'autres parties du projet ou dans des projets futurs, réduisant ainsi la duplication de code.
+Simplifier les tests : Tester chaque module ou fonction de manière isolée, facilitant les tests unitaires.
+Optimiser la collaboration : Permettre à plusieurs développeurs de travailler simultanément sur différents modules sans conflits.
+Assurer la scalabilité : Ajouter de nouvelles fonctionnalités ou modules sans compromettre l'architecture existante.
+Principes Fondamentaux
+Pour appliquer cette méthode efficacement, il est important de respecter les principes suivants :
+
+Modularité : Diviser le code en modules indépendants.
+Hiérarchie : Organiser les modules et fonctions en niveaux logiques.
+Points d'entrée clairs : Définir des fichiers spécifiques comme interfaces principales pour chaque module.
+Gestion des dépendances : Structurer les relations entre les modules et fonctions de manière explicite.
+Étapes Clés de la Méthode
+1. Création d'un Module
+Si un nouveau module est nécessaire :
+Créez un fichier portant le nom du module (par exemple, nom-du-module.js).
+Si le module contient plusieurs fonctions, créez un dossier portant le même nom que le module et placez-y les fichiers correspondants à chaque fonction.
+Exemple :
+
+Pour un module auth, créez un dossier auth/ contenant des fichiers tels que login.js, logout.js et register.js.
+2. Gestion des Fonctions
+Si une fonction nécessite d'autres fonctions, organisez-les dans un sous-dossier spécifique.
+Utilisez des imports pour intégrer ces fonctions dans la fonction principale.
+Exemple :
+
+Si une fonction time.js a besoin d'un chronomètre, créez un fichier chronometre.js dans un dossier time/ et importez-le dans time.js.
+3. Définition des Points d'Entrée
+Chaque module doit avoir un point d'entrée principal qui sert d'interface pour importer ses composants internes.
+Exemple :
+
+Dans un fichier header.js, vous pouvez importer date-time.js, qui à son tour importera date.js et time.js.
+4. Organisation Hiérarchique
+Classez les modules et fonctions en niveaux pour refléter leur complexité et leurs dépendances.
+Utilisez une notation claire pour identifier chaque niveau (ex : Niveau 0, Niveau 1.1, etc.).
+Exemple :
+
+Niveau 0 : header.js
+└── Niveau 1.1 : date-time.js
+    ├── Niveau 2.1 : date.js
+    └── Niveau 2.2 : time.js
+        └── Niveau 3.1 : chronometre.js
+		
+		
+Exemple Pratique
+Supposons qu'un utilisateur demande une fonction date-time dans le header.
+
+Étapes à Suivre :
+Créez un fichier header.js comme point d'entrée.
+Dans header.js, importez date-time.js.
+Dans date-time.js, importez date.js et time.js.
+Si time.js nécessite un chronomètre, créez un fichier chronometre.js dans un dossier time/ et importez-le dans time.js.
+Avantages de la Méthode
+Cette méthode offre plusieurs bénéfices significatifs :
+
+Clarté et Organisation : Une structure claire facilite la compréhension et la navigation dans le code.
+Réduction de la Complexité : En segmentant le code en modules et fonctions distincts, la complexité globale est allégée.
+Flexibilité : Ajoutez, modifiez ou supprimez des modules sans impacter l'ensemble du système.
+Meilleure Gestion des Dépendances : Les relations entre les composants sont explicitement définies, minimisant les risques d'erreurs.
+Optimisation des Performances : Chargez uniquement les modules nécessaires grâce à des imports dynamiques.
+Conclusion
+Cette méthode est un outil puissant pour structurer vos projets logiciels de manière modulaire, maintenable et scalable. En adoptant cette approche, vous gagnerez en efficacité, réduirez les erreurs potentielles et améliorerez la qualité globale de votre code. Le modèle GPT peut être guidé pour appliquer cette méthode en suivant les étapes clés présentées ici, tout en comprenant pleinement ses avantages pratiques.
+
+Suggestions pour l'Utilisation dans "Cursor":
+Encouragez "Cursor" à générer des exemples concrets basés sur cette méthode (ex : structure de dossiers, code d'exemple).
+Demandez-lui de simuler des scénarios où cette méthode pourrait être appliquée (ex : ajout d'une nouvelle fonctionnalité dans un projet existant).
+Invitez "Cursor" à explorer des cas d'utilisation avancés, comme la gestion des dépendances externes ou l'intégration avec des frameworks populaires.

@@ -1,58 +1,30 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import styles from '../styles.module.css';
+import { MENU_ITEMS } from './GroupMenu3/constants';
 
-const GroupMenu3 = ({ isActive, onItemClick, activeItemId }) => {
-    const [expandedItem, setExpandedItem] = useState(null);
 
-    const items = [
-        { 
-            id: 31, 
-            name: 'CONTROLE', 
-            subItems: [
-                { id: 311, name: 'DEMARRER' },
-                { id: 312, name: 'ARRETER' },
-                { id: 313, name: 'PAUSE' }
-            ]
-        },
-        { 
-            id: 32, 
-            name: 'GESTION', 
-            subItems: [
-                { id: 321, name: 'AJOUTER' },
-                { id: 322, name: 'SUPPRIMER' },
-                { id: 323, name: 'MODIFIER' }
-            ]
-        },
-        { 
-            id: 33, 
-            name: 'SYSTEME',
-            subItems: [
-                { id: 331, name: 'MISE A JOUR' },
-                { id: 332, name: 'BACKUP' },
-                { id: 333, name: 'RESTORE' }
-            ]
-        }
-    ];
-
+const GroupMenu3 = ({ isActive, onItemClick, activeItemId, expandedItem, onExpand }) => {
     const handleItemClick = (itemId, e) => {
         e.stopPropagation();
-        setExpandedItem(expandedItem === itemId ? null : itemId);
+        onExpand(expandedItem === itemId ? null : itemId);
+
     };
 
     const handleSubItemClick = (itemId, subItemId, e) => {
         e.stopPropagation();
-        onItemClick(3, subItemId, e);
+        onItemClick(1, subItemId, e);
     };
 
     return (
         <div className={styles.groupContainer}>
             <button className={styles.groupButton}>
-                MCP
+                menu 3
             </button>
             <div className={styles.itemsList}>
-                {items.map(item => (
+
+                {MENU_ITEMS.map(item => (
                     <div key={item.id} className={styles.itemContainer}>
                         <button
                             className={`${styles.itemButton} ${expandedItem === item.id ? styles.expanded : ''}`}

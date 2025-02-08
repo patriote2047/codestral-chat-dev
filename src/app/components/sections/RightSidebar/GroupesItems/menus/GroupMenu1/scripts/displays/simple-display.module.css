@@ -1,0 +1,224 @@
+.previewContainer {
+    max-height: 100% !important;
+    overflow-y: auto !important;
+    padding: var(--spacing-md) !important;
+    background-color: var(--theme-bg-primary) !important;
+    color: var(--theme-text-primary) !important;
+}
+
+/* Styles des icônes SVG */
+.category-icon {
+    width: 20px !important;
+    height: 20px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-right: var(--spacing-sm) !important;
+}
+
+.icon-path {
+    fill: var(--theme-accent) !important;
+}
+
+.categoryHeader:hover .icon-path {
+    fill: var(--theme-text-primary) !important;
+}
+
+/* En-tête du rapport */
+.report-header {
+    background-color: var(--theme-bg-secondary) !important;
+    padding: var(--spacing-md) !important;
+    border-radius: var(--border-radius) !important;
+    margin-bottom: var(--spacing-md) !important;
+    border: 1px solid var(--theme-border) !important;
+}
+
+.report-title {
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    color: var(--theme-text-primary) !important;
+    margin: 0 0 0.5rem 0 !important;
+}
+
+.project-path {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    font-size: 0.875rem !important;
+}
+
+.path-label {
+    color: var(--theme-text-secondary) !important;
+    font-weight: 500 !important;
+}
+
+.path-value {
+    color: var(--theme-accent) !important;
+    font-family: var(--font-mono) !important;
+}
+
+/* En-tête de catégorie */
+.categoryWrapper {
+    margin-bottom: 1rem !important;
+    background-color: var(--theme-bg-primary) !important;
+    border-radius: var(--border-radius) !important;
+}
+
+.categoryHeader {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    padding: 0.75rem 1rem !important;
+    background-color: var(--theme-bg-secondary) !important;
+    border-radius: 0.5rem 0.5rem 0 0 !important;
+    border: 1px solid var(--theme-border) !important;
+    border-bottom: 2px solid var(--theme-accent) !important;
+    margin: 0 !important;
+}
+
+.category-title {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: var(--theme-text-primary) !important;
+    flex: 1 !important;
+}
+
+.category-count {
+    background-color: var(--theme-accent) !important;
+    color: var(--theme-bg-primary) !important;
+    padding: 0.25rem 0.75rem !important;
+    border-radius: 1rem !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+}
+
+/* Container des commandes */
+.categoryContainer {
+    border: 1px solid var(--theme-border) !important;
+    border-top: none !important;
+    border-radius: 0 0 0.5rem 0.5rem !important;
+    overflow: hidden !important;
+    background-color: var(--theme-bg-primary) !important;
+}
+
+.command-item {
+    padding: 0.75rem 1rem !important;
+    border-bottom: 1px solid var(--theme-border) !important;
+    background-color: var(--theme-bg-primary) !important;
+    transition: background-color var(--transition-fast) !important;
+}
+
+.command-item:last-child {
+    border-bottom: none !important;
+}
+
+.command-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 1rem !important;
+    margin-bottom: 0.25rem !important;
+}
+
+.command-name {
+    font-weight: 600 !important;
+    color: var(--theme-accent) !important;
+    font-size: 0.9rem !important;
+    min-width: 120px !important;
+}
+
+.command-value {
+    font-family: var(--font-mono) !important;
+    background-color: var(--theme-bg-tertiary) !important;
+    padding: 0.25rem 0.5rem !important;
+    border-radius: var(--border-radius) !important;
+    font-size: 0.875rem !important;
+    color: var(--theme-text-primary) !important;
+    border: 1px solid var(--theme-border) !important;
+    flex: 1 !important;
+    transition: all var(--transition-fast) !important;
+}
+
+.command-description {
+    color: var(--theme-text-secondary) !important;
+    font-size: 0.875rem !important;
+    margin: 0.25rem 0 0 0 !important;
+    line-height: 1.5 !important;
+    padding-left: 120px !important;
+}
+
+/* Résumé */
+.report-summary {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+    padding: 1rem !important;
+    background-color: var(--theme-bg-secondary) !important;
+    border-radius: var(--border-radius) !important;
+    margin-top: 1rem !important;
+    border: 1px solid var(--theme-border) !important;
+}
+
+.summary-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 0.75rem !important;
+    background-color: var(--theme-bg-primary) !important;
+    border-radius: var(--border-radius) !important;
+    border: 1px solid var(--theme-border) !important;
+}
+
+.summary-label {
+    color: var(--theme-text-secondary) !important;
+    font-size: 0.875rem !important;
+    margin-bottom: 0.25rem !important;
+}
+
+.summary-value {
+    color: var(--theme-accent) !important;
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+}
+
+/* Effets de survol */
+.command-item:hover {
+    background-color: var(--theme-bg-hover) !important;
+}
+
+.command-value:hover {
+    background-color: var(--theme-bg-hover) !important;
+    color: var(--theme-accent) !important;
+    border-color: var(--theme-accent) !important;
+}
+
+/* Animations */
+.category-icon {
+    transition: transform var(--transition-fast) !important;
+}
+
+.categoryHeader:hover .category-icon {
+    transform: scale(1.1) !important;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .command-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.5rem !important;
+    }
+
+    .command-description {
+        padding-left: 0 !important;
+    }
+
+    .command-name {
+        min-width: auto !important;
+    }
+
+    .report-summary {
+        grid-template-columns: 1fr !important;
+    }
+} 

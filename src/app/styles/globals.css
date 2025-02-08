@@ -4,9 +4,10 @@
     --footer-height: 40px;
     --sidebar-width: 280px;
 
-    /* Theme colors */
+    /* Base colors - Light Theme (default) */
     --theme-bg-primary: #ffffff;
     --theme-bg-secondary: #f5f5f5;
+    --theme-bg-tertiary: #eef2f6;
     --theme-bg-hover: #e9ecef;
     --theme-text-primary: #333333;
     --theme-text-secondary: #666666;
@@ -18,11 +19,12 @@
     --theme-error: #f44336;
     --theme-error-bg: #ffebee;
 
-    /* Scrollbar */
-    --scrollbar-width: 4px;
-    --scrollbar-track: #1e1e1e;
-    --scrollbar-thumb: #2d2d2d;
-    --scrollbar-thumb-hover: #3d3d3d;
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
 
     /* Border radius */
     --border-radius: 4px;
@@ -34,87 +36,28 @@
     --transition-medium: 0.3s ease;
     --transition-slow: 0.5s ease;
 
-    /* Button Styles */
-    /* Standard Button */
-    --btn-standard-bg: var(--theme-accent);
-    --btn-standard-color: white;
-    --btn-standard-hover-bg: #1976d2;
-    --btn-standard-active-bg: #1aec95;
-    --btn-standard-shadow: 0 2px 4px rgba(33, 150, 243, 0.2);
-    
-    /* Outline Button */
-    --btn-outline-bg: transparent;
-    --btn-outline-color: var(--theme-accent);
-    --btn-outline-border: 1px solid var(--theme-accent);
-    --btn-outline-hover-bg: rgba(33, 150, 243, 0.1);
-    --btn-outline-active-bg: rgba(33, 150, 243, 0.2);
-    
-    /* Ghost Button */
-    --btn-ghost-bg: transparent;
-    --btn-ghost-color: var(--theme-text-secondary);
-    --btn-ghost-hover-bg: var(--theme-bg-hover);
-    --btn-ghost-hover-color: var(--theme-text-primary);
-    --btn-ghost-active-bg: var(--theme-bg-secondary);
-
-    /* Button Sizes */
-    --btn-padding-sm: 0.5rem 1rem;
-    --btn-padding-md: 0.75rem 1.5rem;
-    --btn-padding-lg: 1rem 2rem;
-    --btn-font-sm: 0.875rem;
-    --btn-font-md: 1rem;
-    --btn-font-lg: 1.125rem;
-
-    /* Light theme */
-    --theme-bg-primary-light: #ffffff;
-    --theme-bg-secondary-light: #f8f9fa;
-    --theme-bg-tertiary-light: #f1f3f5;
-    --theme-text-primary-light: #212529;
-    --theme-text-secondary-light: #495057;
-    --theme-border-light: #dee2e6;
-    --theme-accent-light: #228be6;
-
-    /* Dark theme */
-    --theme-bg-primary-dark: #1a1a1a;
-    --theme-bg-secondary-dark: #2d2d2d;
-    --theme-bg-tertiary-dark: #2c2e33;
-    --theme-text-primary-dark: #ffffff;
-    --theme-text-secondary-dark: #b0b0b0;
-    --theme-text-tertiary-dark: #808080;
-    --theme-border-dark: #404040;
-    --theme-accent-dark: #425305;
-    --theme-success-dark: #81c784;
-    --theme-warning-dark: #ffb74d;
-    --theme-error-dark: #e57373;
-    --theme-error-bg-dark: #4a1515;
-}
-
-/* Light theme (default) */
-:root[data-theme='light'] {
-    --theme-bg-primary: var(--theme-bg-primary-light);
-    --theme-bg-secondary: var(--theme-bg-secondary-light);
-    --theme-bg-tertiary: var(--theme-bg-tertiary-light);
-    --theme-text-primary: var(--theme-text-primary-light);
-    --theme-text-secondary: var(--theme-text-secondary-light);
-    --theme-border: var(--theme-border-light);
-    --theme-accent: var(--theme-accent-light);
+    /* Typography */
+    --font-mono: 'Consolas', 'Monaco', monospace;
 }
 
 /* Dark theme */
 :root[data-theme='dark'] {
-    --theme-bg-primary: var(--theme-bg-primary-dark);
-    --theme-bg-secondary: var(--theme-bg-secondary-dark);
-    --theme-bg-tertiary: var(--theme-bg-tertiary-dark);
-    --theme-text-primary: var(--theme-text-primary-dark);
-    --theme-text-secondary: var(--theme-text-secondary-dark);
-    --theme-text-tertiary: var(--theme-text-tertiary-dark);
-    --theme-border: var(--theme-border-dark);
-    --theme-accent: var(--theme-accent-dark);
-    --theme-success: var(--theme-success-dark);
-    --theme-warning: var(--theme-warning-dark);
-    --theme-error: var(--theme-error-dark);
-    --theme-error-bg: var(--theme-error-bg-dark);
+    --theme-bg-primary: #1a1b1e;
+    --theme-bg-secondary: #2a2b2e;
+    --theme-bg-tertiary: #3a3b3e;
+    --theme-bg-hover: #2d2d2d;
+    --theme-text-primary: #e4e6eb;
+    --theme-text-secondary: #b0b3b8;
+    --theme-text-tertiary: #808080;
+    --theme-border: #3e4042;
+    --theme-accent: #4f46e5;
+    --theme-success: #81c784;
+    --theme-warning: #ffb74d;
+    --theme-error: #e57373;
+    --theme-error-bg: #4a1515;
 }
 
+/* Styles de base */
 * {
     box-sizing: border-box;
     padding: 0;
@@ -134,7 +77,7 @@ body {
     font-family: var(--font-sans);
 }
 
-/* Styles de scrollbar personnalisés */
+/* Scrollbar styles */
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -146,30 +89,11 @@ body {
 
 ::-webkit-scrollbar-thumb {
     background: var(--theme-border);
-    border-radius: 4px;
+    border-radius: var(--border-radius);
 }
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--theme-text-secondary);
-}
-
-/* Cache les scrollbars par défaut, les montre uniquement au survol */
-.hide-scrollbar {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
-}
-
-.hide-scrollbar::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
-}
-
-.hide-scrollbar:hover {
-    scrollbar-width: thin;
-    -ms-overflow-style: auto;
-}
-
-.hide-scrollbar:hover::-webkit-scrollbar {
-    display: block;
 }
 
 /* Utilitaires */
@@ -190,7 +114,6 @@ body {
     width: 100%;
     height: 100%;
     margin: 0 auto;
-    max-width: var(--max-width);
 }
 
 /* Liens */

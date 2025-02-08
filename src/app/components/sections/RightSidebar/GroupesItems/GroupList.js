@@ -7,11 +7,10 @@ import GroupMenu2 from './menus/GroupMenu2';
 import GroupMenu3 from './menus/GroupMenu3';
 
 // Import des scripts de commandes
-import displaySimpleCommandList from './menus/scripts/GroupMenu1/id-11/cmd-simple';
-import displayFullCommandList from './menus/scripts/GroupMenu1/id-11/cmd-liste';
-import displayCommandDescriptions from './menus/scripts/GroupMenu1/id-11/cmd-desc';
-import commandManager from './menus/scripts/GroupMenu1/id-11/cmd-ajout';
-import { updateCommandOutput } from '../../../../components/sections/Main/preview/CommandsPreview';
+import { displaySimpleCommandList } from './menus/GroupMenu1/scripts/commands/simple';
+import { displayFullCommandList } from './menus/GroupMenu1/scripts/commands/list';
+import { displayCommandDescriptions } from './menus/GroupMenu1/scripts/commands/desc';
+import { commandManager } from './menus/GroupMenu1/scripts/commands/add';
 
 const GroupList = () => {
     const [activeItems, setActiveItems] = useState({});
@@ -32,110 +31,64 @@ const GroupList = () => {
         };
     }, []);
 
-    const captureOutput = (callback) => {
-        const oldConsoleLog = console.log;
-        let output = [];
-        
-        console.log = (...args) => {
-            output.push(args.join(' '));
-        };
-        
-        callback();
-        
-        console.log = oldConsoleLog;
-        return output.join('\n');
+    const updatePreview = (data) => {
+        console.log('Envoi des données au Preview:', data);
+        const event = new CustomEvent('previewUpdate', { detail: data });
+        window.dispatchEvent(event);
     };
 
-    const handleScriptExecution = (groupId, itemId) => {
-        // Logique pour le groupe SCANNER (GroupMenu1)
-        if (groupId === 1) {
-            let output;
-            switch(itemId) {
-                // COMMANDES
-                case 111: // COMMANDES SIMPLES
-                    output = captureOutput(() => displaySimpleCommandList());
-                    updateCommandOutput(output);
-                    return;
-                case 112: // TOUTES LES COMMANDES
-                    output = captureOutput(() => displayFullCommandList());
-                    updateCommandOutput(output);
-                    return;
-                case 113: // VOIR LES DESCRIPTIONS
-                    output = captureOutput(() => displayCommandDescriptions());
-                    updateCommandOutput(output);
-                    return;
-                case 114: // AJOUTER UNE DESCRIPTION
-                    output = captureOutput(() => 
-                        commandManager.add('nouvelle-commande', 'Description de la nouvelle commande')
-                    );
-                    updateCommandOutput(output);
-                    return;
-                
-                // ANALYSER
-                case 121: return executeScript('analyser/syntaxe');
-                case 122: return executeScript('analyser/structure');
-                case 123: return executeScript('analyser/erreurs');
-                
-                // LIRE
-                case 131: return executeScript('lire/contenu');
-                case 132: return executeScript('lire/metadata');
-                case 133: return executeScript('lire/logs');
-                
-                // EXPLORER
-                case 141: return executeScript('explorer/arborescence');
-                case 142: return executeScript('explorer/recherche');
-                case 143: return executeScript('explorer/filtres');
+    const handleScriptExecution = async (groupId, itemId) => {
+        console.log('Exécution du script:', { groupId, itemId });
+        
+        try {
+            let result;
+            
+            // Groupe SCANNER (GroupMenu1)
+            if (groupId === 1) {
+                switch(itemId) {
+                    case 111: // VOIR COMMANDES SIMPLES
+                        result = await displaySimpleCommandList();
+                        break;
+                    case 112: // VOIR TOUTES LES COMMANDES
+                        result = await displayFullCommandList();
+                        break;
+                    case 113: // VOIR LES DESCRIPTIONS
+                        result = await displayCommandDescriptions();
+                        break;
+                    case 114: // AJOUTER UNE DESCRIPTION
+                        result = await commandManager.add('nouvelle-commande', 'Description de la nouvelle commande');
+                        break;
+                    default:
+                        result = { 
+                            type: 'info', 
+                            content: 'Fonctionnalité en cours de développement...' 
+                        };
+                }
             }
-        }
-        // Logique pour le groupe LISTER
-        else if (groupId === 2) {
-            switch(itemId) {
-                // CONFIG
-                case 211: return executeScript('config/general');
-                case 212: return executeScript('config/avance');
-                case 213: return executeScript('config/securite');
-                
-                // DOSSIER
-                case 221: return executeScript('dossier/creer');
-                case 222: return executeScript('dossier/deplacer');
-                case 223: return executeScript('dossier/copier');
-                
-                // FICHIER
-                case 231: return executeScript('fichier/nouveau');
-                case 232: return executeScript('fichier/editer');
-                case 233: return executeScript('fichier/supprimer');
-                
-                // FONCTIONS
-                case 241: return executeScript('fonctions/importer');
-                case 242: return executeScript('fonctions/exporter');
-                case 243: return executeScript('fonctions/compiler');
+            // Groupe LISTER (GroupMenu2)
+            else if (groupId === 2) {
+                result = {
+                    type: 'info',
+                    content: 'Fonctionnalité en cours de développement...'
+                };
             }
-        }
-        // Logique pour le groupe MCP
-        else if (groupId === 3) {
-            switch(itemId) {
-                // CONTROLE
-                case 311: return executeScript('mcp/controle/demarrer');
-                case 312: return executeScript('mcp/controle/arreter');
-                case 313: return executeScript('mcp/controle/pause');
-                
-                // GESTION
-                case 321: return executeScript('mcp/gestion/ajouter');
-                case 322: return executeScript('mcp/gestion/supprimer');
-                case 323: return executeScript('mcp/gestion/modifier');
-                
-                // SYSTEME
-                case 331: return executeScript('mcp/systeme/update');
-                case 332: return executeScript('mcp/systeme/backup');
-                case 333: return executeScript('mcp/systeme/restore');
+            // Groupe MCP (GroupMenu3)
+            else if (groupId === 3) {
+                result = {
+                    type: 'info',
+                    content: 'Fonctionnalité en cours de développement...'
+                };
             }
-        }
-    };
 
-    const executeScript = (scriptPath) => {
-        console.log(`Exécution du script: ${scriptPath}`);
-        // Ici, on peut ajouter la logique pour exécuter les scripts
-        // Par exemple, faire un appel API, exécuter une commande, etc.
+            console.log('Résultat de l\'exécution:', result);
+            updatePreview(result);
+        } catch (error) {
+            console.error('Erreur lors de l\'exécution:', error);
+            updatePreview({
+                type: 'error',
+                content: error.message
+            });
+        }
     };
 
     const handleItemClick = (groupId, itemId, event) => {
