@@ -6,6 +6,14 @@
 
 Codestral est né d'une vision simple : permettre aux développeurs de garder le contrôle total sur leurs projets tout en profitant pleinement de la puissance des assistants IA (Cline, RootCline, Cursor, Windsurf, etc.). Notre solution agit comme un intermédiaire intelligent, analysant et supervisant chaque action pour garantir l'intégrité de votre code.
 
+> 🚧 **Projet en Développement Actif** 🚧
+>
+> Codestral est actuellement en phase de développement intense. Nous travaillons d'arrache-pied pour créer une expérience exceptionnelle ! Si vous souhaitez participer à cette aventure, n'hésitez pas à nous rejoindre. Chaque contribution compte pour façonner l'avenir de Codestral.
+>
+> - 📅 Version Alpha prévue : Q2 2024
+> - 🔄 Mises à jour régulières
+> - 🤝 Ouvert aux contributions et suggestions
+
 ![Interface Codestral](./assets/images/readme.PNG)  
 *Centre de contrôle Codestral - Vue d'ensemble*
 
