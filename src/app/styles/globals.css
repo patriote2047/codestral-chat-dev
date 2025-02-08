@@ -18,6 +18,12 @@
     --theme-error: #f44336;
     --theme-error-bg: #ffebee;
 
+    /* Scrollbar */
+    --scrollbar-width: 4px;
+    --scrollbar-track: #1e1e1e;
+    --scrollbar-thumb: #2d2d2d;
+    --scrollbar-thumb-hover: #3d3d3d;
+
     /* Border radius */
     --border-radius: 4px;
     --border-radius-lg: 8px;
@@ -75,7 +81,7 @@
     --theme-text-secondary-dark: #b0b0b0;
     --theme-text-tertiary-dark: #808080;
     --theme-border-dark: #404040;
-    --theme-accent-dark: #64b5f6;
+    --theme-accent-dark: #425305;
     --theme-success-dark: #81c784;
     --theme-warning-dark: #ffb74d;
     --theme-error-dark: #e57373;
@@ -196,4 +202,33 @@ a {
 
 a:hover {
     color: var(--theme-accent);
+}
+
+/* Styles de scrollbar personnalisés */
+.custom-scrollbar {
+    scrollbar-width: var(--scrollbar-width);
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    direction: rtl; /* Pour avoir la scrollbar à gauche */
+}
+
+.custom-scrollbar > * {
+    direction: ltr; /* Rétablir la direction normale pour le contenu */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: var(--scrollbar-width);
+    height: var(--scrollbar-width);
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: var(--border-radius-sm);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
 }

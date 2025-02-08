@@ -1,18 +1,25 @@
 .header {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1rem;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 1rem;
-    height: var(--header-height);
-    width: 100%;
+    padding: 1rem;
     background: var(--theme-bg-primary);
     border-bottom: 1px solid var(--theme-border);
+    height: var(--header-height);
 }
 
 .headerLeft {
     display: flex;
     align-items: center;
     gap: 2rem;
+}
+
+.headerCenter {
+    flex: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .headerRight {
@@ -22,44 +29,72 @@
 }
 
 .logo {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--theme-text-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--theme-accent);
     margin: 0;
 }
 
 .nav {
     display: flex;
     gap: 1rem;
-    align-items: center;
 }
 
 .navLink {
-    color: var(--theme-text-secondary);
+    color: var(--theme-text-primary);
     text-decoration: none;
-    font-size: 0.875rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
     transition: all var(--transition-fast);
 }
 
 .navLink:hover {
-    color: var(--theme-text-primary);
-    background: var(--theme-bg-secondary);
+    background: var(--theme-bg-tertiary);
 }
 
-.navLink.active {
+.active {
     color: var(--theme-accent);
     font-weight: 500;
 }
 
+@media (max-width: 1024px) {
+    .header {
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+            "left right"
+            "center center";
+    }
+
+    .headerLeft {
+        grid-area: left;
+    }
+
+    .headerCenter {
+        grid-area: center;
+        padding-top: 0.5rem;
+    }
+
+    .headerRight {
+        grid-area: right;
+    }
+}
+
 @media (max-width: 640px) {
     .headerLeft {
+        flex-direction: column;
+        align-items: flex-start;
         gap: 1rem;
     }
 
     .nav {
-        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .navLink {
+        width: 100%;
+        padding: 0.75rem;
     }
 }
 

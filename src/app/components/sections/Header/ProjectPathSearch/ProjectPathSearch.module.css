@@ -1,0 +1,108 @@
+.container {
+    width: 100%;
+    padding: 0.5rem;
+}
+
+.pathSelector {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.selectButton {
+    background: var(--theme-accent);
+    color: var(--theme-text-primary);
+    border: none;
+    padding: var(--btn-padding-sm);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: var(--btn-font-sm);
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+}
+
+.selectButton:hover {
+    background: var(--theme-bg-tertiary);
+}
+
+.selectButton:active {
+    opacity: 0.8;
+}
+
+.pathDisplay {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--theme-bg-tertiary);
+    border: 1px solid var(--theme-border);
+    border-radius: var(--border-radius);
+    flex: 1;
+    min-width: 0;
+}
+
+.pathLabel {
+    color: var(--theme-text-secondary);
+    font-size: var(--btn-font-sm);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.pathValue {
+    color: var(--theme-text-primary);
+    font-size: var(--btn-font-sm);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+}
+
+.saveStatus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.saving {
+    opacity: 1;
+    animation: pulse 1s infinite;
+}
+
+.saved {
+    opacity: 1;
+    color: var(--theme-success);
+}
+
+.error {
+    opacity: 1;
+    color: var(--theme-error);
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 640px) {
+    .pathSelector {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .selectButton {
+        width: 100%;
+    }
+} 

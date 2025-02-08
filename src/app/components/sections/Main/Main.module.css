@@ -1,21 +1,21 @@
 .main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    width: 100%;
     height: 100%;
-    overflow: hidden;
-    position: relative;
-    z-index: 0;
+    background: var(--theme-bg-primary);
 }
 
 .contentWrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    width: 100%;
     height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Divise l'espace en deux parties égales */
+}
+
+.chatContainer {
+    width: 100%;
+    height: 100%;
+    border-right: 1px solid var(--theme-border);
     overflow: hidden;
-    position: relative;
-    z-index: 1;
 }
 
 .chatSection {
@@ -37,17 +37,6 @@
     z-index: 1;
 }
 
-.chatContainer {
-    flex: 1;
-    min-height: 0;
-    background: var(--theme-bg-primary);
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
-
 .previewContainer {
     height: 300px;
     background: var(--theme-bg-primary);
@@ -57,4 +46,17 @@
     display: flex;
     flex-direction: column;
     position: relative;
+}
+
+/* Styles pour le responsive */
+@media (max-width: 1024px) {
+    .contentWrapper {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .chatContainer {
+        border-right: none;
+        border-bottom: 1px solid var(--theme-border);
+    }
 }

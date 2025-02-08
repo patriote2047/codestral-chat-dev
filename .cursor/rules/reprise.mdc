@@ -1,0 +1,14 @@
+---
+description: Tu dois comprendre le projet et sa structure avant de commencer.
+globs: 
+---
+Lire le README.md pour comprendre :
+L'architecture globale du projet
+Les dépendances utilisées
+Les conventions de code établies
+Les instructions d'installation et de développement
+Analyser le .git pour :
+Voir l'historique des modifications
+Comprendre l'évolution du projet
+Identifier les branches actives
+Observer les patterns de développement utilisés

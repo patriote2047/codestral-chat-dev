@@ -3,6 +3,7 @@
 import React from 'react';
 import styles from './Header.module.css';
 import ThemeSelector from './ThemeSelector/ThemeSelector';
+import ProjectPathSearch from './ProjectPathSearch/ProjectPathSearch';
 
 const Header = () => {
     return (
@@ -20,6 +21,9 @@ const Header = () => {
                         À propos
                     </a>
                 </nav>
+            </div>
+            <div className={styles.headerCenter}>
+                <ProjectPathSearch />
             </div>
             <div className={styles.headerRight}>
                 <ThemeSelector />

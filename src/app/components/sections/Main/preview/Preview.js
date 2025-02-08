@@ -3,14 +3,19 @@
 import React, { useState } from 'react';
 import styles from './Preview.module.css';
 import CountLinesPreview from './CountLinesPreview';
+import CommandsPreview from './CommandsPreview';
 
 const AVAILABLE_TABS = [
     {
         id: 'count-lines',
         label: 'Compteur de lignes',
         component: CountLinesPreview
+    },
+    {
+        id: 'commands',
+        label: 'Commandes',
+        component: CommandsPreview
     }
-    // D'autres onglets seront ajoutés ici
 ];
 
 export default function Preview() {
