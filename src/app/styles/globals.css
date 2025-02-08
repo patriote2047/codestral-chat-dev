@@ -38,6 +38,14 @@
 
     /* Typography */
     --font-mono: 'Consolas', 'Monaco', monospace;
+
+    /* Boutons */
+    --btn-padding-sm: 0.5rem 1rem;
+    --btn-padding-md: 0.75rem 1.5rem;
+    --btn-padding-lg: 1rem 2rem;
+    --btn-font-sm: 0.875rem;
+    --btn-font-md: 1rem;
+    --btn-font-lg: 1.125rem;
 }
 
 /* Dark theme */
@@ -50,7 +58,7 @@
     --theme-text-secondary: #b0b3b8;
     --theme-text-tertiary: #808080;
     --theme-border: #3e4042;
-    --theme-accent: #4f46e5;
+    --theme-accent: #f0ba0a;
     --theme-success: #81c784;
     --theme-warning: #ffb74d;
     --theme-error: #e57373;

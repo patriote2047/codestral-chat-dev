@@ -33,7 +33,7 @@ export const formatCommandsReport = (projectPath, categorizedCommands, totalComm
                 type: 'header',
                 html: `
                     <div class="${styles['report-header']}">
-                        <h1 class="${styles['report-title']}">Commandes du Projet</h1>
+                        <h1 class="${styles['report-title']}">Commandes du Package.json</h1>
                         <div class="${styles['project-path']}">
                             <span class="${styles['path-label']}">Chemin:</span>
                             <span class="${styles['path-value']}">${projectPath}</span>

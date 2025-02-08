@@ -40,12 +40,18 @@ export async function GET() {
         console.log('Contenu du package.json:', packageJsonContent);
         
         const packageJson = JSON.parse(packageJsonContent);
-        console.log('Scripts trouvés:', packageJson.scripts);
+        console.log('Scripts et dépendances trouvés:', {
+            scripts: packageJson.scripts,
+            dependencies: packageJson.dependencies,
+            devDependencies: packageJson.devDependencies
+        });
 
         return NextResponse.json({
             projectName: selectedPath,
             projectPath: selectedPath,
-            scripts: packageJson.scripts || {}
+            scripts: packageJson.scripts || {},
+            dependencies: packageJson.dependencies || {},
+            devDependencies: packageJson.devDependencies || {}
         });
     } catch (error) {
         console.error('Erreur lors de la lecture des scripts:', error);

@@ -9,8 +9,8 @@ import GroupMenu3 from './menus/GroupMenu3';
 // Import des scripts de commandes
 import { displaySimpleCommandList } from './menus/GroupMenu1/scripts/commands/simple';
 import { displayFullCommandList } from './menus/GroupMenu1/scripts/commands/list';
-import { displayCommandDescriptions } from './menus/GroupMenu1/scripts/commands/desc';
-import { commandManager } from './menus/GroupMenu1/scripts/commands/add';
+
+
 
 const GroupList = () => {
     const [activeItems, setActiveItems] = useState({});

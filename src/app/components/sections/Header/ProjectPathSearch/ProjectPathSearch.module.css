@@ -1,29 +1,39 @@
 .container {
+    display: flex;
     width: 100%;
-    padding: 0.5rem;
+    height: 100%;
+    padding: var(--spacing-sm);
 }
 
 .pathSelector {
     display: flex;
-    align-items: center;
-    gap: 1rem;
+    align-items: stretch;
     width: 100%;
+    height: 100%;
+    background-color: var(--theme-bg-secondary);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--theme-border);
+    overflow: hidden;
 }
 
 .selectButton {
-    background: var(--theme-accent);
-    color: var(--theme-text-primary);
-    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: var(--btn-padding-sm);
-    border-radius: var(--border-radius);
-    cursor: pointer;
+    background: var(--theme-accent);
+    color: var(--theme-bg-primary);
+    border: none;
     font-size: var(--btn-font-sm);
-    transition: all var(--transition-fast);
+    cursor: pointer;
     white-space: nowrap;
+    transition: all var(--transition-fast);
+    min-width: 160px;
 }
 
 .selectButton:hover {
     background: var(--theme-bg-tertiary);
+    color: var(--theme-text-primary);
 }
 
 .selectButton:active {
@@ -33,37 +43,35 @@
 .pathDisplay {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 0.75rem;
-    background: var(--theme-bg-tertiary);
-    border: 1px solid var(--theme-border);
-    border-radius: var(--border-radius);
     flex: 1;
-    min-width: 0;
+    padding: 0 var(--spacing-md);
+    gap: var(--spacing-sm);
+    background-color: var(--theme-bg-primary);
+    border-left: 1px solid var(--theme-border);
 }
 
 .pathLabel {
-    color: var(--theme-text-secondary);
-    font-size: var(--btn-font-sm);
+    color: var(--theme-accent);
     font-weight: 500;
     white-space: nowrap;
 }
 
 .pathValue {
-    color: var(--theme-text-primary);
-    font-size: var(--btn-font-sm);
+    color: var(--theme-accent);
+    flex: 1;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    flex: 1;
+    text-align: center;
 }
+
 
 .saveStatus {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     font-size: 1rem;
     opacity: 0;
     transition: opacity var(--transition-fast);
@@ -85,24 +93,23 @@
 }
 
 @keyframes pulse {
-    0% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.5;
-    }
-    100% {
-        opacity: 1;
-    }
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
 }
 
 @media (max-width: 640px) {
     .pathSelector {
         flex-direction: column;
-        align-items: stretch;
     }
 
     .selectButton {
         width: 100%;
+        min-width: unset;
+    }
+
+    .pathDisplay {
+        border-left: none;
+        border-top: 1px solid var(--theme-border);
     }
 } 

@@ -4,10 +4,11 @@ export const MENU_ITEMS = [
         name: 'PACKAGE.JSON',
         subItems: [
 
-            { id: 311, name: 'VOIR COMMANDES SIMPLES' },
-            { id: 312, name: 'VOIR TOUTES LES COMMANDES' },
-            { id: 313, name: 'VOIR LES DECRIPTIONS' },
-            { id: 314, name: 'AJOUTER UNE DESCRIPTION' }
+            { id: 311, name: 'VIDE' },
+            { id: 312, name: 'VIDE' },
+            { id: 313, name: 'VIDE' },
+            { id: 314, name: 'VIDE' }
+
 
         ]
 

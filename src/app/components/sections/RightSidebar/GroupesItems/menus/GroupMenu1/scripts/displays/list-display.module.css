@@ -1,0 +1,183 @@
+.previewContainer {
+    max-height: 100% !important;
+    overflow-y: auto !important;
+    padding: var(--spacing-md) !important;
+    background-color: var(--theme-bg-primary) !important;
+    color: var(--theme-text-primary) !important;
+}
+
+/* En-tête du rapport */
+.report-header {
+    background-color: var(--theme-bg-secondary);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-md);
+    border: 1px solid var(--theme-border);
+}
+
+.report-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--theme-text-primary);
+    margin: 0 0 0.5rem 0;
+    text-align: center;
+}
+
+.project-path {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--theme-text-secondary);
+}
+
+/* Catégories */
+.category-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.category-header {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-md);
+    background-color: var(--theme-bg-secondary);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    border: 1px solid var(--theme-border);
+    border-bottom: 2px solid var(--theme-accent);
+}
+
+.category-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: var(--spacing-sm);
+    color: var(--theme-accent);
+}
+
+.category-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--theme-text-primary);
+    flex: 1;
+}
+
+.category-count {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
+    background-color: var(--theme-accent);
+    color: var(--theme-bg-primary);
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+/* Dépendances */
+.commands-container {
+    border: 1px solid var(--theme-border);
+    border-top: none;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    background-color: var(--theme-bg-primary);
+}
+
+.command-item {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--theme-border);
+    transition: background-color var(--transition-fast);
+}
+
+.command-item:last-child {
+    border-bottom: none;
+}
+
+.command-item:hover {
+    background-color: var(--theme-bg-hover);
+}
+
+.command-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
+}
+
+.command-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--theme-accent);
+}
+
+.version-badge {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+    background-color: var(--theme-bg-tertiary);
+    color: var(--theme-text-secondary);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--theme-border);
+}
+
+.type-badge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--border-radius);
+    color: var(--theme-bg-primary);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.command-description {
+    color: var(--theme-text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Métadonnées */
+.metadata {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background-color: var(--theme-bg-secondary);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--theme-border);
+}
+
+.metadata-title {
+    font-size: 0.9rem;
+    color: var(--theme-text-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.metadata-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.metadata-item {
+    background-color: var(--theme-bg-primary);
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--theme-border);
+}
+
+.metadata-label {
+    font-size: 0.8rem;
+    color: var(--theme-text-secondary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.metadata-value {
+    font-size: 1.1rem;
+    color: var(--theme-accent);
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .metadata-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .command-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+} 

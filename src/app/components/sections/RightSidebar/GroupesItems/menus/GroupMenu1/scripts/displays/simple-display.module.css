@@ -18,6 +18,7 @@
 
 .icon-path {
     fill: var(--theme-accent) !important;
+    transition: fill var(--transition-fast) !important;
 }
 
 .categoryHeader:hover .icon-path {
@@ -36,6 +37,7 @@
 .report-title {
     font-size: 1.25rem !important;
     font-weight: 600 !important;
+    text-align: center !important;
     color: var(--theme-text-primary) !important;
     margin: 0 0 0.5rem 0 !important;
 }

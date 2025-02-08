@@ -1,106 +1,110 @@
 'use client';
 
-export const displayFullCommandList = () => {
-    const commands = {
-        'Développement': {
-            'dev': {
-                description: 'Lance le serveur de développement',
-                options: {
-                    '--port': 'Port du serveur (défaut: 3000)',
-                    '--host': 'Hôte du serveur (défaut: localhost)'
-                }
-            },
-            'dev:watch': {
-                description: 'Lance le serveur avec rechargement automatique',
-                options: {
-                    '--ignore': 'Fichiers à ignorer',
-                    '--delay': 'Délai de rechargement (ms)'
-                }
-            },
-            'dev:managed': {
-                description: 'Lance le serveur en mode géré',
-                options: {
-                    '--config': 'Fichier de configuration',
-                    '--env': 'Environnement'
-                }
-            }
-        },
-        'Tests': {
-            'test': {
-                description: 'Lance les tests unitaires',
-                options: {
-                    '--watch': 'Mode watch',
-                    '--coverage': 'Rapport de couverture'
-                }
-            },
-            'test:e2e': {
-                description: 'Lance les tests end-to-end',
-                options: {
-                    '--browser': 'Navigateur à utiliser',
-                    '--headless': 'Mode headless'
-                }
-            }
-        },
-        'Build': {
-            'build': {
-                description: 'Compile le projet pour la production',
-                options: {
-                    '--analyze': 'Analyse de bundle',
-                    '--minify': 'Minification'
-                }
-            },
-            'build:docs': {
-                description: 'Génère la documentation',
-                options: {
-                    '--output': 'Dossier de sortie',
-                    '--format': 'Format de sortie'
-                }
-            }
+import { formatFullCommandOutput } from '../displays/list-display';
+
+export const displayFullCommandList = async () => {
+    try {
+        // Récupérer le package.json du projet
+        const response = await fetch('/api/project/scripts');
+        if (!response.ok) {
+            throw new Error('Erreur lors de la récupération des dépendances');
         }
-    };
 
-    return {
-        type: 'success',
-        title: 'Liste Complète des Commandes',
-        subtitle: 'Documentation détaillée de toutes les commandes disponibles',
-        content: formatFullCommandOutput(commands),
-        metadata: {
-            timestamp: new Date().toISOString(),
-            totalCommands: Object.values(commands).reduce((acc, cat) => acc + Object.keys(cat).length, 0)
+        const data = await response.json();
+        console.log('Données reçues:', data); // Pour le débogage
+
+        // Vérifier si nous avons bien les dépendances dans la réponse
+        if (!data.dependencies && !data.devDependencies) {
+            throw new Error('Aucune dépendance trouvée dans le package.json');
         }
-    };
-};
 
-const formatFullCommandOutput = (commands) => {
-    const content = [];
-    
-    content.push({ type: 'text', text: '\nDocumentation complète des commandes' });
-    content.push({ type: 'separator' });
+        const dependencies = data.dependencies || {};
+        const devDependencies = data.devDependencies || {};
 
-    for (const [category, categoryCommands] of Object.entries(commands)) {
-        content.push({ type: 'category', icon: '▼', text: category });
-        
-        for (const [command, details] of Object.entries(categoryCommands)) {
-            content.push({
-                type: 'command',
-                name: command,
-                description: details.description
+        // Catégoriser les dépendances
+        const categorizedDeps = {
+            'Framework & Core': {
+                'react': dependencies['react'] || devDependencies['react'],
+                'next': dependencies['next'] || devDependencies['next'],
+                'express': dependencies['express'] || devDependencies['express']
+            },
+            'Build & Compilation': {
+                'webpack': devDependencies['webpack'],
+                'babel': devDependencies['@babel/core'],
+                'typescript': devDependencies['typescript']
+            },
+            'Tests & Qualité': {
+                'jest': devDependencies['jest'],
+                'eslint': devDependencies['eslint'],
+                'prettier': devDependencies['prettier']
+            },
+            'Utilitaires': {
+                'lodash': dependencies['lodash'],
+                'axios': dependencies['axios'],
+                'moment': dependencies['moment']
+            },
+            'Développement': {
+                'nodemon': devDependencies['nodemon'],
+                'concurrently': devDependencies['concurrently']
+            }
+        };
+
+        // Nettoyer les catégories vides et les dépendances undefined
+        const cleanedDeps = Object.entries(categorizedDeps).reduce((acc, [category, deps]) => {
+            const cleanDeps = Object.entries(deps).reduce((depsAcc, [name, version]) => {
+                if (version) {
+                    depsAcc[name] = {
+                        version,
+                        description: `Package ${name} en version ${version}`,
+                        type: devDependencies[name] ? 'devDependency' : 'dependency'
+                    };
+                }
+                return depsAcc;
+            }, {});
+
+            if (Object.keys(cleanDeps).length > 0) {
+                acc[category] = cleanDeps;
+            }
+            return acc;
+        }, {});
+
+        // Ajouter une catégorie "Autres" pour les dépendances non catégorisées
+        const categorizedNames = new Set(
+            Object.values(categorizedDeps)
+                .flatMap(deps => Object.keys(deps))
+        );
+
+        const otherDeps = {};
+        [...Object.entries(dependencies), ...Object.entries(devDependencies)]
+            .forEach(([name, version]) => {
+                if (!categorizedNames.has(name)) {
+                    otherDeps[name] = {
+                        version,
+                        description: `Package ${name} en version ${version}`,
+                        type: devDependencies[name] ? 'devDependency' : 'dependency'
+                    };
+                }
             });
 
-            if (details.options) {
-                content.push({ type: 'text', text: 'Options:' });
-                for (const [option, optionDesc] of Object.entries(details.options)) {
-                    content.push({
-                        type: 'option',
-                        name: option,
-                        description: optionDesc
-                    });
-                }
-            }
-            
-            content.push({ type: 'separator' });
+        if (Object.keys(otherDeps).length > 0) {
+            cleanedDeps['Autres'] = otherDeps;
         }
-    }
 
-    return content;
+        // Vérifier si nous avons des dépendances à afficher
+        if (Object.keys(cleanedDeps).length === 0) {
+            return {
+                type: 'error',
+                content: 'Aucune dépendance trouvée dans le projet'
+            };
+        }
+
+        console.log('Dépendances catégorisées:', cleanedDeps); // Pour le débogage
+        return formatFullCommandOutput(cleanedDeps);
+    } catch (error) {
+        console.error('Erreur complète:', error); // Pour le débogage
+        return {
+            type: 'error',
+            content: `Erreur lors de l'analyse des dépendances : ${error.message}`
+        };
+    }
 }; 

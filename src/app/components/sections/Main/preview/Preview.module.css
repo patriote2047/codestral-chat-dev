@@ -1,6 +1,5 @@
-/* Variables */
+/* Structure de base */
 .previewContainer {
-    /* Utilisation des variables globales */
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -9,32 +8,16 @@
     overflow: hidden;
 }
 
-/* Thème sombre */
-@media (prefers-color-scheme: dark) {
-    .previewContainer {
-        --background-primary: var(--theme-bg-primary-dark);
-        --background-secondary: var(--theme-bg-secondary-dark);
-        --background-tertiary: var(--theme-bg-tertiary-dark);
-        --text-primary: var(--theme-text-primary-dark);
-        --text-secondary: var(--theme-text-secondary-dark);
-        --border-color: var(--theme-border-dark);
-        --primary-color: var(--theme-accent-dark);
-        --secondary-color: var(--theme-text-secondary-dark);
-        --shadow-sm: var(--theme-shadow-sm);
-        --shadow-md: var(--theme-shadow-md);
-    }
-}
-
 .previewContent {
     flex: 1;
     overflow-y: auto;
-    padding: 1.5rem;
+    padding: 0;
     background-color: var(--theme-bg-primary);
 }
 
-/* Message d'erreur */
+/* États de base */
 .error {
-    padding: 1rem;
+    padding: var(--spacing-md);
     background-color: var(--theme-error-bg);
     border: 1px solid var(--theme-error);
     border-radius: var(--border-radius);
@@ -42,35 +25,133 @@
 }
 
 .error h3 {
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 var(--spacing-sm) 0;
     font-size: 1.125rem;
 }
 
-/* Message de succès */
 .success {
-    padding: 1rem;
+    padding: var(--spacing-md);
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--spacing-md);
     background-color: var(--theme-bg-primary);
 }
 
-/* Placeholder */
 .placeholder {
     color: var(--theme-text-secondary);
     background-color: var(--theme-bg-secondary);
-    padding: 2rem;
+    padding: var(--spacing-xl);
     border-radius: var(--border-radius);
     text-align: center;
+}
+
+/* Éléments communs */
+.text {
+    color: var(--theme-text-primary);
+    line-height: 1.5;
+}
+
+.separator {
+    height: 1px;
+    background-color: var(--theme-border);
+    margin: 1.5rem 0;
+    opacity: 0.5;
+}
+
+.metadata {
+    font-size: 0.875rem;
+    color: var(--theme-text-secondary);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--theme-border);
+    margin-top: auto;
+}
+
+/* Navigation */
+.mainTabs {
+    display: flex;
+    background-color: var(--theme-bg-secondary);
+    border-bottom: 1px solid var(--theme-border);
+    padding: 0.5rem 1rem 0;
+}
+
+.mainTabButton {
+    background: none;
+    border: none;
+    color: var(--theme-text-secondary);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-weight: 500;
+    border-radius: 4px 4px 0 0;
+    margin-right: 0.5rem;
+    transition: all var(--transition-fast);
+}
+
+.mainTabButton:hover {
+    color: var(--theme-text-primary);
+    background-color: var(--theme-bg-hover);
+}
+
+.mainTabButton.active {
+    color: var(--theme-text-primary);
+    background-color: var(--theme-bg-primary);
+    border: 1px solid var(--theme-border);
+    border-bottom: none;
+}
+
+.subTabs {
+    display: flex;
+    background-color: var(--theme-bg-primary);
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--theme-border);
+}
+
+.subTabButton {
+    background: none;
+    border: none;
+    color: var(--theme-text-secondary);
+    padding: 0.25rem 0.75rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    border-radius: 3px;
+    margin-right: 0.5rem;
+    transition: all var(--transition-fast);
+}
+
+.subTabButton:hover {
+    color: var(--theme-text-primary);
+    background-color: var(--theme-bg-hover);
+}
+
+.subTabButton.active {
+    color: var(--theme-text-primary);
+    background-color: var(--theme-bg-hover);
+    font-weight: 500;
+}
+
+/* États */
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--theme-text-secondary);
+    font-style: italic;
+}
+
+.noPackage {
+    padding: 1rem;
+    color: var(--theme-warning);
+    background-color: var(--theme-warning-bg);
+    border-radius: var(--border-radius);
 }
 
 /* En-tête du rapport */
 .header {
     background-color: var(--theme-bg-secondary);
-    padding: 1.5rem;
+    padding: var(--spacing-lg);
     border-radius: var(--border-radius);
-    margin-bottom: 1rem;
+    margin-bottom: var(--spacing-md);
     border: 1px solid var(--theme-border);
 }
 
@@ -92,12 +173,12 @@
 .categoryHeader {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 1rem;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
     background-color: var(--theme-bg-secondary);
-    border-radius: 0.5rem 0.5rem 0 0;
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
     border: 1px solid var(--theme-border);
-    margin-top: 1.5rem;
+    margin-top: var(--spacing-lg);
 }
 
 .categoryHeader .category-icon {
@@ -133,7 +214,7 @@
 }
 
 .command-item {
-    padding: 1rem;
+    padding: var(--spacing-md);
     border-bottom: 1px solid var(--theme-border);
     background-color: var(--theme-bg-secondary);
 }
@@ -145,8 +226,8 @@
 .command-header {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 0.5rem;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
 }
 
 .command-name {
@@ -158,8 +239,8 @@
 .command-value {
     font-family: var(--font-mono);
     background-color: var(--theme-bg-tertiary);
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius);
     font-size: 0.875rem;
     color: var(--theme-text-secondary);
 }
@@ -175,10 +256,10 @@
 .summary {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    padding: 1.5rem;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
     background-color: var(--theme-bg-secondary);
-    border-radius: 0.5rem;
+    border-radius: var(--border-radius);
     margin-top: auto;
     border: 1px solid var(--theme-border);
 }
@@ -193,22 +274,13 @@
 .summary-label {
     color: var(--theme-text-secondary);
     font-size: 0.875rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: var(--spacing-xs);
 }
 
 .summary-value {
     color: var(--theme-accent);
     font-size: 1.5rem;
     font-weight: 600;
-}
-
-/* Métadonnées */
-.metadata {
-    font-size: 0.875rem;
-    color: var(--theme-text-secondary);
-    padding-top: 1rem;
-    border-top: 1px solid var(--theme-border);
-    margin-top: auto;
 }
 
 /* Effets de survol */
@@ -247,80 +319,10 @@
     display: flex;
 }
 
-/* Styles des onglets principaux */
-.mainTabs {
-    display: flex;
-    background-color: var(--theme-bg-secondary);
-    border-bottom: 1px solid var(--theme-border);
-    padding: 0.5rem 1rem 0;
-}
-
-.mainTabButton {
-    background: none;
-    border: none;
-    color: var(--theme-text-secondary);
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    font-weight: 500;
-    border-radius: 4px 4px 0 0;
-    margin-right: 0.5rem;
-    transition: all var(--transition-fast);
-}
-
-.mainTabButton:hover {
-    color: var(--theme-text-primary);
-    background-color: var(--theme-bg-hover);
-}
-
-.mainTabButton.active {
-    color: var(--theme-text-primary);
-    background-color: var(--theme-bg-primary);
-    border: 1px solid var(--theme-border);
-    border-bottom: none;
-}
-
-/* Styles des sous-onglets */
-.subTabs {
-    display: flex;
-    background-color: var(--theme-bg-primary);
-    padding: 0.5rem 1rem;
-    border-bottom: 1px solid var(--theme-border);
-}
-
-.subTabButton {
-    background: none;
-    border: none;
-    color: var(--theme-text-secondary);
-    padding: 0.25rem 0.75rem;
-    cursor: pointer;
-    font-size: 0.9rem;
-    border-radius: 3px;
-    margin-right: 0.5rem;
-    transition: all var(--transition-fast);
-}
-
-.subTabButton:hover {
-    color: var(--theme-text-primary);
-    background-color: var(--theme-bg-hover);
-}
-
-.subTabButton.active {
-    color: var(--theme-text-primary);
-    background-color: var(--theme-bg-hover);
-    font-weight: 500;
-}
-
 /* Styles des lignes */
 .line {
     padding: 0.25rem 0;
     font-size: 0.9rem;
-}
-
-.separator {
-    height: 1px;
-    background-color: var(--theme-border);
-    margin: 1.5rem 0;
-    opacity: 0.5;
 }
 
 /* Styles pour les commandes */
@@ -811,23 +813,6 @@
     font-size: 0.9rem;
 }
 
-/* États de chargement et d'erreur */
-.loading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    color: var(--theme-text-secondary);
-    font-style: italic;
-}
-
-.noPackage {
-    padding: 1rem;
-    color: var(--theme-warning);
-    background-color: var(--theme-warning-bg);
-    border-radius: var(--border-radius);
-}
-
 /* Styles pour l'affichage des commandes */
 .commandsContainer {
     padding: 1rem;
@@ -855,12 +840,4 @@
     color: var(--theme-text-secondary);
     font-family: var(--font-mono);
     font-size: 0.9rem;
-}
-
-.success {
-    padding: 1rem;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
 } 

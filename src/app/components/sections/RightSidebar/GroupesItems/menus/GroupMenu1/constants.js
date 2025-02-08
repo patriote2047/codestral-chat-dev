@@ -3,12 +3,12 @@ export const MENU_ITEMS = [
         id: 11, 
         name: 'PACKAGE.JSON',
         subItems: [
-            { id: 111, name: 'VOIR COMMANDES SIMPLES' },
-            { id: 112, name: 'VOIR TOUTES LES COMMANDES' },
-
-            { id: 113, name: 'VOIR LES DECRIPTIONS' },
-            { id: 114, name: 'AJOUTER UNE DESCRIPTION' }
+            { id: 111, name: 'Voir les commandes' },
+            { id: 112, name: 'Lister les Dépendances' },
+            { id: 113, name: 'Rapport détaillé' },
+            { id: 114, name: 'Conseils et astuces' }
         ]
+
 
     },
     { 

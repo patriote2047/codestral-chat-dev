@@ -91,7 +91,6 @@
 .itemButton.expanded {
     background: var(--theme-bg-tertiary);
     color: var(--theme-accent);
-    font-weight: 600;
 }
 
 .subItemsList {
@@ -124,7 +123,7 @@
 .subItemButton.active {
     background: var(--theme-bg-tertiary);
     color: var(--theme-accent);
-    font-weight: 600;
+    font-weight: 1000;
     flex: 1;
 }
 
